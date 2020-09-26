@@ -4,20 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ThirdActivity"
-    android:orientation="vertical">
+    tools:context=".DialogActivity">
 
-    <Button
-        android:id="@+id/button3"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="Button 3"/>
+        android:text="This is a dialog activity"/>
 
-    <Button
-        android:id="@+id/button_exit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="Exit"/>
 </LinearLayout>

@@ -9,4 +9,18 @@
         android:textAllCaps="false"
         android:text="Button 1"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:id="@+id/startNormalActivity"
+        android:text="Start NormalActivity"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:id="@+id/startDialogActivity"
+        android:text="Start DialogActivity"/>
+
 </LinearLayout>

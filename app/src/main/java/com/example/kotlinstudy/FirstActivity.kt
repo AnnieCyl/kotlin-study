@@ -1,18 +1,30 @@
 package com.example.kotlinstudy
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
 import kotlinx.android.synthetic.main.first_layout.*
 
-class FirstActivity : AppCompatActivity() {
+class FirstActivity : BaseActivity() {
+    private val TAG = "FirstActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (savedInstanceState != null) {
+            val tempData = savedInstanceState.getString("data_key")
+            Log.d(TAG, "Lifecycle temp data from savedInstanceState")
+        }
+
+
+        Log.d(TAG, "Lifecycle onCreate, task id is $taskId")
         setContentView(R.layout.first_layout)
         button1.setOnClickListener{
 //            finish()
@@ -31,11 +43,57 @@ class FirstActivity : AppCompatActivity() {
 //            intent.data = Uri.parse("https://www.baidu.com")
 
             // 调用系统拨号界面
-            val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:10086")
+//            val intent = Intent(Intent.ACTION_DIAL)
+//            intent.data = Uri.parse("tel:10086")
 
+//            val data = "Hello SecondActivity"
+//            val intent = Intent(this, SecondActivity::class.java)
+//            intent.putExtra("extra_data", data)
+
+//            startActivity(intent)
+//            startActivityForResult(intent, 1)
+            SecondActivity.actionStart(this, "data1", "data2")
+        }
+
+        startNormalActivity.setOnClickListener{
+            val intent = Intent(this, NormalActivity::class.java)
             startActivity(intent)
         }
+
+        startDialogActivity.setOnClickListener{
+            val intent = Intent(this, DialogActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "Lifecycle onStart")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "Lifecycle onResume")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "Lifecycle onPause")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "Lifecycle onStop")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "Lifecycle onDestroy")
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(TAG, "Lifecycle onRestart")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -49,5 +107,21 @@ class FirstActivity : AppCompatActivity() {
             R.id.remove_item -> Toast.makeText(this, "You click Remove", Toast.LENGTH_SHORT).show()
         }
         return true
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode){
+            1 -> if (resultCode == Activity.RESULT_OK){
+                val returnedData = data?.getStringExtra("data_return")
+                Log.d("FirstActivity", "returned data is $returnedData")
+            }
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
+        super.onSaveInstanceState(outState, outPersistentState)
+        val tempData = "Something you just typed"
+        outState.putString("data_key", tempData)
     }
 }
