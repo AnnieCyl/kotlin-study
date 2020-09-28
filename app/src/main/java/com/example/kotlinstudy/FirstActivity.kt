@@ -2,14 +2,12 @@ package com.example.kotlinstudy
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
+import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.first_layout.*
 
@@ -52,7 +50,13 @@ class FirstActivity : BaseActivity() {
 
 //            startActivity(intent)
 //            startActivityForResult(intent, 1)
+            val inputText = et_first.text.toString()
+            Toast.makeText(this, inputText, Toast.LENGTH_SHORT).show()
             SecondActivity.actionStart(this, "data1", "data2")
+        }
+
+        btn_change_image.setOnClickListener{
+            img_first.setImageResource(R.drawable.lazy)
         }
 
         startNormalActivity.setOnClickListener{
@@ -63,6 +67,22 @@ class FirstActivity : BaseActivity() {
         startDialogActivity.setOnClickListener{
             val intent = Intent(this, DialogActivity::class.java)
             startActivity(intent)
+        }
+
+        btn_control_progress_bar.setOnClickListener{
+            if (pb_default.visibility == View.VISIBLE) {
+                pb_default.visibility = View.GONE
+            } else {
+                pb_default.visibility = View.VISIBLE
+            }
+        }
+
+        btn_add_progress.setOnClickListener{
+            if (pb_bar.progress >= 100) {
+                pb_bar.progress = 0;
+            } else {
+                pb_bar.progress = pb_bar.progress + 10
+            }
         }
     }
 

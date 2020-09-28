@@ -1,5 +1,6 @@
 package com.example.kotlinstudy.practice
 
+import java.lang.StringBuilder
 import kotlin.math.max
 
 fun main() {
@@ -163,4 +164,44 @@ fun doStudy(study: Study?) {
         it.readBooks()
         it.doHomework()
     }
+}
+
+fun eatFruit1(){
+    val list = listOf("Apple", "Banana", "Orange", "Pear", "Grape")
+    val result = with(StringBuilder()){
+        append("Start eating fruits.\n")
+        for (fruit in list) {
+            append(fruit).append("\n")
+        }
+        append("Ate all fruits.")
+        toString()
+    }
+    println(result)
+}
+
+fun eatFruit2(){
+    val list = listOf("Apple", "Banana", "Orange", "Pear", "Grape")
+    val result = StringBuilder().run {
+        append("Start eating fruits.\n")
+        for (fruit in list) {
+            append(fruit).append("\n")
+        }
+        append("Ate all fruits.")
+        toString()
+    }
+
+    println(result)
+}
+
+fun eatFruit3(){
+    val list = listOf("Apple", "Banana", "Orange", "Pear", "Grape")
+    val result = StringBuilder().apply {
+        append("Start eating fruits.\n")
+        for (fruit in list) {
+            append(fruit).append("\n")
+        }
+        append("Ate all fruits.")
+    }
+
+    println(result.toString())
 }
