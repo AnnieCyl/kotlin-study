@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,10 +7,47 @@
     tools:context=".SecondActivity">
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="match_parent"
+        android:id="@+id/btn_second_1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:text="Button 2"/>
+        android:text="Button 1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"/>
 
-</LinearLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_second_2"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="Button 2"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_second_3"
+        android:layout_centerInParent="true"
+        android:textAllCaps="false"
+        android:text="Button 3"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_second_4"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:textAllCaps="false"
+        android:text="Button 4"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_second_5"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:textAllCaps="false"
+        android:text="Button 5"/>
+
+</RelativeLayout>

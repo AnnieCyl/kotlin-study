@@ -1,22 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/tv_first"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="This is TextView"
-        android:textColor="#00ff00"
-        android:textSize="24sp"/>
 
-    <EditText
+    <com.example.kotlinstudy.TitleLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_first"
-        android:hint="Type something here"
-        android:maxLines="2"/>
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/tv_first"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="This is TextView"
+            android:textColor="#00ff00"
+            android:textSize="24sp"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:id="@+id/et_first"
+            android:hint="Type something here"
+            android:maxLines="2"/>
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/button1"
@@ -65,6 +79,19 @@
         android:id="@+id/pb_bar"
         style="?android:attr/progressBarStyleHorizontal"
         android:max="100"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_alert"
+        android:text="Alert Dialog"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_list_view"
+        android:text="List View"
+        android:textAllCaps="false"/>
 
     <Button
         android:layout_width="match_parent"

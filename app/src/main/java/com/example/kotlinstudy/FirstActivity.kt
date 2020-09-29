@@ -1,6 +1,7 @@
 package com.example.kotlinstudy
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -21,6 +22,8 @@ class FirstActivity : BaseActivity() {
             Log.d(TAG, "Lifecycle temp data from savedInstanceState")
         }
 
+        // 将系统自带的标题栏隐藏掉
+        supportActionBar?.hide()
 
         Log.d(TAG, "Lifecycle onCreate, task id is $taskId")
         setContentView(R.layout.first_layout)
@@ -83,6 +86,22 @@ class FirstActivity : BaseActivity() {
             } else {
                 pb_bar.progress = pb_bar.progress + 10
             }
+        }
+
+        btn_alert.setOnClickListener{
+            AlertDialog.Builder(this).apply {
+                setTitle("This is Dialog")
+                setMessage("Something important.")
+                setCancelable(false)
+                setPositiveButton("OK"){dialog, which ->  }
+                setNegativeButton("Cancel"){dialog, which ->  }
+                show()
+            }
+        }
+
+        btn_list_view.setOnClickListener{
+            val intent = Intent(this, ListViewActivity::class.java)
+            startActivity(intent)
         }
     }
 

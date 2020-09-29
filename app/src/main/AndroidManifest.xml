@@ -10,7 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DialogActivity" android:theme="@style/Theme.AppCompat.Dialog"></activity>
+        <activity android:name=".ListViewActivity"></activity>
+        <activity
+            android:name=".DialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog" />
         <activity android:name=".NormalActivity" />
         <activity android:name=".ThirdActivity">
             <intent-filter tools:ignore="AppLinkUrlError">
@@ -21,7 +24,9 @@
                 <data android:scheme="https" />
             </intent-filter>
         </activity>
-        <activity android:name=".SecondActivity" android:launchMode="singleInstance">
+        <activity
+            android:name=".SecondActivity"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="com.example.kotlinstudy.ACTION_START" />
 

@@ -18,7 +18,7 @@ class SecondActivity : BaseActivity() {
         Log.d(TAG, "extra data is $extraData")
         Log.d(TAG, "Lifecycle onCreate, task id is $taskId")
 
-        button2.setOnClickListener{
+        btn_second_1.setOnClickListener{
 //            returnToFirstActivity()
             val intent = Intent(this, ThirdActivity::class.java)
             startActivity(intent)
