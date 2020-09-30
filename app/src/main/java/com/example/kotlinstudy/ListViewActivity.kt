@@ -3,6 +3,7 @@ package com.example.kotlinstudy
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_list_view.*
 
 class ListViewActivity : AppCompatActivity() {
@@ -17,6 +18,10 @@ class ListViewActivity : AppCompatActivity() {
 //        val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data)
         val adapter = FruitAdapter(this, R.layout.fruit_item_layout, fruitList)
         lv_first.adapter = adapter
+        lv_first.setOnItemClickListener{ parent, view, position, id ->
+            val fruit = fruitList[position]
+            Toast.makeText(this, fruit.name, Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun initFruits() {
