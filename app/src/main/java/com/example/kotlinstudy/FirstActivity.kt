@@ -10,6 +10,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import com.example.kotlinstudy.chat.ChatActivity
 import kotlinx.android.synthetic.main.first_layout.*
 
 class FirstActivity : BaseActivity() {
@@ -105,7 +106,8 @@ class FirstActivity : BaseActivity() {
         }
 
         btn_chat.setOnClickListener{
-//            val intent = Intent(this, )
+            val intent = Intent(this, ChatActivity::class.java)
+            startActivity(intent)
         }
     }
 
