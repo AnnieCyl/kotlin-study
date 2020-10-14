@@ -10,8 +10,8 @@ import kotlinx.android.synthetic.main.activity_chat.*
 class ChatActivity : AppCompatActivity(), View.OnClickListener {
     private val messageList = ArrayList<ChatMessage>()
 
-    // adapter 是可空变量
-    private var adapter: MessageAdapter?=null
+    // lateinit 关键字表示该变量延迟初始化
+    private lateinit var adapter: MessageAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
@@ -21,7 +21,9 @@ class ChatActivity : AppCompatActivity(), View.OnClickListener {
         val layoutManager = LinearLayoutManager(this)
         rv_chat.layoutManager = layoutManager
 
-        adapter = MessageAdapter(messageList)
+        if (!::adapter.isInitialized) {
+            adapter = MessageAdapter(messageList)
+        }
         rv_chat.adapter = adapter
 
         btn_send.setOnClickListener(this)
@@ -44,7 +46,7 @@ class ChatActivity : AppCompatActivity(), View.OnClickListener {
                     val msg = ChatMessage(content, ChatMessage.TYPE_SEND)
                     messageList.add(msg)
                     // 当有新消息时，刷新 RecyclerView 中的显示
-                    adapter?.notifyItemInserted(messageList.size - 1)
+                    adapter.notifyItemInserted(messageList.size - 1)
                     // 将 RecyclerView 定位到最后一行
                     rv_chat.scrollToPosition(messageList.size - 1)
                     // 清空输入框中的内容

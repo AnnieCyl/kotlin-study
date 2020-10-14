@@ -8,15 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinstudy.R
 import java.lang.IllegalArgumentException
 
-class MessageAdapter(val messageList: List<ChatMessage>): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    inner class LeftViewHolder(view: View):RecyclerView.ViewHolder(view){
-        val leftMessage: TextView = view.findViewById(R.id.tv_left_message)
-    }
-
-    inner class RightViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val rightMessage: TextView = view.findViewById(R.id.tv_right_message)
-    }
-
+class MessageAdapter(val messageList: List<ChatMessage>): RecyclerView.Adapter<MessageViewHolder>() {
     override fun getItemViewType(position: Int): Int {
         val message = messageList[position]
         return message.type
@@ -30,12 +22,11 @@ class MessageAdapter(val messageList: List<ChatMessage>): RecyclerView.Adapter<R
         RightViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MessageViewHolder, position: Int) {
         val message = messageList[position]
         when(holder){
             is LeftViewHolder -> holder.leftMessage.text = message.content
             is RightViewHolder -> holder.rightMessage.text = message.content
-            else -> throw IllegalArgumentException()
         }
     }
 
