@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ThirdActivity"
+    android:background="@drawable/message_left"
     android:orientation="vertical">
 
     <Button

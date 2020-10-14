@@ -103,6 +103,10 @@ class FirstActivity : BaseActivity() {
             val intent = Intent(this, ListViewActivity::class.java)
             startActivity(intent)
         }
+
+        btn_chat.setOnClickListener{
+//            val intent = Intent(this, )
+        }
     }
 
     override fun onStart() {
