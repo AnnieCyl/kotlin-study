@@ -2,7 +2,10 @@ package com.example.kotlinstudy
 
 import android.app.Activity
 import android.app.AlertDialog
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
@@ -18,6 +21,8 @@ import kotlinx.android.synthetic.main.first_layout.*
 class FirstActivity : BaseActivity(), View.OnClickListener {
     private val TAG = "FirstActivity"
 
+    lateinit var timeChangeReceiver: TimeChangeReceiver
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState != null) {
@@ -27,6 +32,11 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
 
         // 将系统自带的标题栏隐藏掉
         supportActionBar?.hide()
+
+        val intentFilter = IntentFilter()
+        intentFilter.addAction("android.intent.action.TIME_TICK")
+        timeChangeReceiver = TimeChangeReceiver()
+        registerReceiver(timeChangeReceiver, intentFilter)
 
         Log.d(TAG, "Lifecycle onCreate, task id is $taskId")
         setContentView(R.layout.first_layout)
@@ -41,6 +51,8 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
         btn_chat.setOnClickListener(this)
         btn_fragment.setOnClickListener(this)
         btn_news.setOnClickListener(this)
+        btn_send_broadcast.setOnClickListener(this)
+        btn_send_ordered_broadcast.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -95,6 +107,20 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
                 val intent = Intent(this, NewsActivity::class.java)
                 startActivity(intent)
             }
+            btn_send_broadcast -> {
+                val intent = Intent("com.example.kotlinstudy.MY_BROADCAST")
+                // 这里一定要调用 setPackage 方法指定这条广播是发送给哪个应用的，从而让它变成一条显式广播，否则静态注册的 BroadcastReceiver 将无法接收到这条广播。
+                // 因为 Android 8.0 以后静态注册的 BroadcastReceiver 是无法接收隐式广播的。
+                intent.setPackage(packageName)
+                sendBroadcast(intent)
+            }
+            btn_send_ordered_broadcast -> {
+                val intent = Intent("com.example.kotlinstudy.MY_BROADCAST")
+                // 这里一定要调用 setPackage 方法指定这条广播是发送给哪个应用的，从而让它变成一条显式广播，否则静态注册的 BroadcastReceiver 将无法接收到这条广播。
+                // 因为 Android 8.0 以后静态注册的 BroadcastReceiver 是无法接收隐式广播的。
+                intent.setPackage(packageName)
+                sendOrderedBroadcast(intent, null)
+            }
         }
     }
 
@@ -120,6 +146,7 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
 
     override fun onDestroy() {
         super.onDestroy()
+        unregisterReceiver(timeChangeReceiver)
         Log.d(TAG, "Lifecycle onDestroy")
     }
 
@@ -186,5 +213,11 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
         val inputText = et_first.text.toString()
         Toast.makeText(this, inputText, Toast.LENGTH_SHORT).show()
         SecondActivity.actionStart(this, "data1", "data2")
+    }
+
+    inner class TimeChangeReceiver: BroadcastReceiver(){
+        override fun onReceive(context: Context?, intent: Intent?) {
+            Toast.makeText(context, "Time has changed", Toast.LENGTH_SHORT).show()
+        }
     }
 }

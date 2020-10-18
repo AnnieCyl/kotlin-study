@@ -158,6 +158,28 @@
             android:textAllCaps="false" />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_send_broadcast"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Send Broadcast"
+            android:textAllCaps="false" />
+
+        <Button
+            android:id="@+id/btn_send_ordered_broadcast"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Send Ordered Broadcast"
+            android:textAllCaps="false" />
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/img_first"
         android:layout_width="wrap_content"
