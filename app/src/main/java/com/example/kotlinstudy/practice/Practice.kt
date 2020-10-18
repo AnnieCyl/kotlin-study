@@ -119,8 +119,23 @@ fun main() {
 //    Thread{
 //        println("Thread is running")
 //    }.start()
-    printParams(123)
-    printParams2(str = "hello")
+
+//    printParams(123)
+//    printParams2(str = "hello")
+
+//    val count = "AB123abc!@#".lettersCount()
+//    println("count is $count")
+
+//    val money1 = Money(5)
+//    val money2 = Money(10)
+//    val money3 = money1 + money2
+//
+//    val money4 = money3 + 20
+//    println(money3.value)
+//    println(money4.value)
+
+    val str = "abc" * 3
+    println(str)
 }
 
 fun printParams(num: Int, str: String = "hello") {

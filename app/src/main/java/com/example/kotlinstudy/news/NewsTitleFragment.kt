@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kotlinstudy.R
+import com.example.kotlinstudy.practice.times
 import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.fragment_news_title.*
 import java.lang.StringBuilder
@@ -52,14 +53,7 @@ class NewsTitleFragment : Fragment() {
         return newsList;
     }
 
-    private fun getRandomLengthString(s: String): String {
-        val n = (1..20).random()
-        val builder = StringBuilder()
-        repeat(2){
-            builder.append(s)
-        }
-        return builder.toString()
-    }
+    private fun getRandomLengthString(s: String) = s * (1..20).random()
 
     inner class NewsAdapter(val newsList: List<News>): RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
         inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -78,7 +72,7 @@ class NewsTitleFragment : Fragment() {
                 } else {
                     // 如果是单页模式，则直接启动 NewsContentActivity
                     NewsContentActivity.actionStart(parent.context, news.title, news.content)
-                }85
+                }
             }
             return holder
         }
