@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.Toast
 import com.example.kotlinstudy.chat.ChatActivity
 import com.example.kotlinstudy.fragment.FragmentActivity
+import com.example.kotlinstudy.news.NewsActivity
 import kotlinx.android.synthetic.main.first_layout.*
 
 class FirstActivity : BaseActivity(), View.OnClickListener {
@@ -39,6 +40,7 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
         btn_list_view.setOnClickListener(this)
         btn_chat.setOnClickListener(this)
         btn_fragment.setOnClickListener(this)
+        btn_news.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -87,6 +89,10 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
             }
             btn_chat -> {
                 val intent = Intent(this, ChatActivity::class.java)
+                startActivity(intent)
+            }
+            btn_news -> {
+                val intent = Intent(this, NewsActivity::class.java)
                 startActivity(intent)
             }
         }
