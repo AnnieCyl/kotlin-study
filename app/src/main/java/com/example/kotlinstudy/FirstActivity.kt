@@ -53,6 +53,7 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
         btn_news.setOnClickListener(this)
         btn_send_broadcast.setOnClickListener(this)
         btn_send_ordered_broadcast.setOnClickListener(this)
+        btn_force_offline.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -120,6 +121,10 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
                 // 因为 Android 8.0 以后静态注册的 BroadcastReceiver 是无法接收隐式广播的。
                 intent.setPackage(packageName)
                 sendOrderedBroadcast(intent, null)
+            }
+            btn_force_offline -> {
+                val intent = Intent("com.example.kotlinstudy.FORCE_OFFLINE")
+                sendBroadcast(intent)
             }
         }
     }
