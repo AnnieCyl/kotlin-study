@@ -17,6 +17,9 @@ import com.example.kotlinstudy.chat.ChatActivity
 import com.example.kotlinstudy.fragment.FragmentActivity
 import com.example.kotlinstudy.news.NewsActivity
 import kotlinx.android.synthetic.main.first_layout.*
+import java.io.BufferedWriter
+import java.io.OutputStream
+import java.io.OutputStreamWriter
 
 class FirstActivity : BaseActivity(), View.OnClickListener {
     private val TAG = "FirstActivity"
@@ -126,6 +129,14 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
                 val intent = Intent("com.example.kotlinstudy.FORCE_OFFLINE")
                 sendBroadcast(intent)
             }
+        }
+    }
+
+    fun save(inputText: String) {
+        val output = openFileOutput("file_test", Context.MODE_APPEND)
+        val writer = BufferedWriter(OutputStreamWriter(output))
+        writer.use {
+            it.write(inputText)
         }
     }
 

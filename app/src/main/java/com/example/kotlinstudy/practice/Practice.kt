@@ -134,8 +134,8 @@ fun main() {
 //    println(money3.value)
 //    println(money4.value)
 
-    val str = "abc" * 3
-    println(str)
+//    val str = "abc" * 3
+//    println(str)
 }
 
 fun printParams(num: Int, str: String = "hello") {
