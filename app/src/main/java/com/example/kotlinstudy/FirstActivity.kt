@@ -16,6 +16,7 @@ import android.widget.Toast
 import com.example.kotlinstudy.chat.ChatActivity
 import com.example.kotlinstudy.fragment.FragmentActivity
 import com.example.kotlinstudy.news.NewsActivity
+import com.example.kotlinstudy.persistence.FilePersistenceActivity
 import kotlinx.android.synthetic.main.first_layout.*
 import java.io.BufferedWriter
 import java.io.OutputStream
@@ -57,6 +58,7 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
         btn_send_broadcast.setOnClickListener(this)
         btn_send_ordered_broadcast.setOnClickListener(this)
         btn_force_offline.setOnClickListener(this)
+        btn_file_persistence.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -129,14 +131,10 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
                 val intent = Intent("com.example.kotlinstudy.FORCE_OFFLINE")
                 sendBroadcast(intent)
             }
-        }
-    }
-
-    fun save(inputText: String) {
-        val output = openFileOutput("file_test", Context.MODE_APPEND)
-        val writer = BufferedWriter(OutputStreamWriter(output))
-        writer.use {
-            it.write(inputText)
+            btn_file_persistence -> {
+                val intent = Intent(this, FilePersistenceActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
