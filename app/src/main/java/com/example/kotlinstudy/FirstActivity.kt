@@ -59,6 +59,7 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
         btn_send_ordered_broadcast.setOnClickListener(this)
         btn_force_offline.setOnClickListener(this)
         btn_file_persistence.setOnClickListener(this)
+        btn_shared_preferences.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -134,6 +135,19 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
             btn_file_persistence -> {
                 val intent = Intent(this, FilePersistenceActivity::class.java)
                 startActivity(intent)
+            }
+            btn_shared_preferences -> {
+                val editor = getSharedPreferences("data", Context.MODE_PRIVATE).edit()
+                editor.putString("name", "Annie")
+                editor.putInt("age", 18)
+                editor.putBoolean("married", false)
+                editor.apply()
+
+                val prefs = getSharedPreferences("data", Context.MODE_PRIVATE)
+                val name = prefs.getString("name", "")
+                val age = prefs.getInt("age", 0)
+                val married = prefs.getBoolean("married", false)
+                Toast.makeText(this, "$name is $age and married $married", Toast.LENGTH_SHORT).show()
             }
         }
     }
