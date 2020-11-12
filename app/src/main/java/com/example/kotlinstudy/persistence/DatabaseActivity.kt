@@ -7,6 +7,8 @@ import android.util.Log
 import android.widget.Toast
 import com.example.kotlinstudy.R
 import kotlinx.android.synthetic.main.activity_database.*
+import java.lang.Exception
+import java.lang.NullPointerException
 
 class DatabaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -95,6 +97,30 @@ class DatabaseActivity : AppCompatActivity() {
                 } while (cursor2.moveToNext())
             }
             cursor2.close()
+        }
+
+        btn_replace_data.setOnClickListener {
+            val db = dbHelper.writableDatabase
+            db.beginTransaction()
+            try {
+                db.delete("Book", null, null)
+                // 以下 if 是为了测试事务中的操作如果失败，旧数据是不会删除的。事务中的操作要么全部执行完，要么都不执行
+                if (true) {
+                    throw NullPointerException()
+                }
+                val values = ContentValues().apply {
+                    put(BookItem.NAME, "Game of Thrones")
+                    put(BookItem.AUTHOR, "George Martin")
+                    put(BookItem.PAGES, 720)
+                    put(BookItem.PRICE, 20.85)
+                }
+                db.insert("Book", null, values)
+                db.setTransactionSuccessful()
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                db.endTransaction()
+            }
         }
     }
 }

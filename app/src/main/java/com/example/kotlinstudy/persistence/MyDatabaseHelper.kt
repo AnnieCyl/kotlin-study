@@ -11,7 +11,8 @@ class MyDatabaseHelper(val context: Context, name: String, version: Int): SQLite
             BookItem.AUTHOR + " text," +
             BookItem.PRICE + " real," +
             BookItem.PAGES + " integer," +
-            BookItem.NAME + " text)"
+            BookItem.NAME + " text," +
+            BookItem.CATEGORY_ID + " integer)"
 
     private val createCategory = "create table Category (" +
             "id integer primary key autoincrement," +
@@ -25,8 +26,13 @@ class MyDatabaseHelper(val context: Context, name: String, version: Int): SQLite
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db?.execSQL("drop table if exists Book")
-        db?.execSQL("drop table if exists Category")
-        onCreate(db)
+        // 每当升级一个数据库版本的时候，onUpgrade() 方法里面都一定要写一个相应的 if 判断语句
+        if (oldVersion <= 1) {
+            db?.execSQL(createCategory)
+        }
+
+        if (oldVersion <= 2) {
+            db.execSQL("alter table Book add column ${BookItem.CATEGORY_ID} integer")
+        }
     }
 }
