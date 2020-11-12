@@ -16,6 +16,7 @@ import android.widget.Toast
 import com.example.kotlinstudy.chat.ChatActivity
 import com.example.kotlinstudy.fragment.FragmentActivity
 import com.example.kotlinstudy.news.NewsActivity
+import com.example.kotlinstudy.persistence.DatabaseActivity
 import com.example.kotlinstudy.persistence.FilePersistenceActivity
 import kotlinx.android.synthetic.main.first_layout.*
 import java.io.BufferedWriter
@@ -60,6 +61,7 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
         btn_force_offline.setOnClickListener(this)
         btn_file_persistence.setOnClickListener(this)
         btn_shared_preferences.setOnClickListener(this)
+        btn_database.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -148,6 +150,10 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
                 val age = prefs.getInt("age", 0)
                 val married = prefs.getBoolean("married", false)
                 Toast.makeText(this, "$name is $age and married $married", Toast.LENGTH_SHORT).show()
+            }
+            btn_database -> {
+                val intent = Intent(this, DatabaseActivity::class.java)
+                startActivity(intent)
             }
         }
     }

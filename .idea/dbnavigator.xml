@@ -24,13 +24,13 @@
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
     <loaded-nodes>
-      <connection connection-id="c9b2ac09-0b55-49f2-a87a-5b7845ddbf08">
+      <connection connection-id="ba398300-e222-4735-aca8-a44b67b65a69">
         <schema name="main" object-types="dataset trigger, table, column, view, constraint, index" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="c9b2ac09-0b55-49f2-a87a-5b7845ddbf08">
+    <connection id="ba398300-e222-4735-aca8-a44b67b65a69">
       <console name="Connection" type="STANDARD" schema="main" session="Main" />
     </connection>
   </component>
@@ -38,10 +38,10 @@
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="c9b2ac09-0b55-49f2-a87a-5b7845ddbf08" />
+    <connection id="ba398300-e222-4735-aca8-a44b67b65a69" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="c9b2ac09-0b55-49f2-a87a-5b7845ddbf08" dataset="main.Book" active-filter-id="" />
+    <filter-actions connection-id="ba398300-e222-4735-aca8-a44b67b65a69" dataset="main.Book" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -69,7 +69,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="c9b2ac09-0b55-49f2-a87a-5b7845ddbf08" active="true">
+      <connection id="ba398300-e222-4735-aca8-a44b67b65a69" active="true">
         <database>
           <name value="Connection" />
           <description value="" />
@@ -84,7 +84,7 @@
           <port value="1234" />
           <database value="database" />
           <files>
-            <file path="C:\Users\Lenovo\Desktop\BookStore.db" schema="main" />
+            <file path="E:\BookStore.db" schema="main" />
           </files>
           <type value="NONE" />
           <user value="" />
