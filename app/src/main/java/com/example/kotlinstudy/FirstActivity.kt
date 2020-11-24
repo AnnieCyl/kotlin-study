@@ -6,6 +6,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
@@ -13,7 +15,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.kotlinstudy.chat.ChatActivity
+import com.example.kotlinstudy.contentprovider.ContentProviderActivity
 import com.example.kotlinstudy.fragment.FragmentActivity
 import com.example.kotlinstudy.news.NewsActivity
 import com.example.kotlinstudy.persistence.DatabaseActivity
@@ -22,6 +27,7 @@ import kotlinx.android.synthetic.main.first_layout.*
 import java.io.BufferedWriter
 import java.io.OutputStream
 import java.io.OutputStreamWriter
+import java.util.jar.Manifest
 
 class FirstActivity : BaseActivity(), View.OnClickListener {
     private val TAG = "FirstActivity"
@@ -62,6 +68,8 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
         btn_file_persistence.setOnClickListener(this)
         btn_shared_preferences.setOnClickListener(this)
         btn_database.setOnClickListener(this)
+        btn_make_call.setOnClickListener(this)
+        btn_contact.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -155,6 +163,36 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
                 val intent = Intent(this, DatabaseActivity::class.java)
                 startActivity(intent)
             }
+
+            btn_make_call -> {
+               if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                   ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CALL_PHONE), 1)
+               } else {
+                   call()
+               }
+            }
+
+            btn_contact -> {
+                val intent = Intent(this, ContentProviderActivity::class.java)
+                startActivity(intent)
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            1 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    call()
+                } else {
+                    Toast.makeText(this, "Permission is denied.", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
@@ -247,6 +285,16 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
         val inputText = et_first.text.toString()
         Toast.makeText(this, inputText, Toast.LENGTH_SHORT).show()
         SecondActivity.actionStart(this, "data1", "data2")
+    }
+
+    private fun call() {
+        try {
+            val intent = Intent(Intent.ACTION_CALL)
+            intent.data = Uri.parse("tel:15394546790")
+            startActivity(intent)
+        } catch (e: SecurityException) {
+            e.printStackTrace()
+        }
     }
 
     inner class TimeChangeReceiver: BroadcastReceiver(){

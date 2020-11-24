@@ -32,7 +32,7 @@ class MyDatabaseHelper(val context: Context, name: String, version: Int): SQLite
         }
 
         if (oldVersion <= 2) {
-            db.execSQL("alter table Book add column ${BookItem.CATEGORY_ID} integer")
+            db?.execSQL("alter table Book add column ${BookItem.CATEGORY_ID} integer")
         }
     }
 }
