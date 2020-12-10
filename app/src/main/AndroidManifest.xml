@@ -14,11 +14,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".notification.Notification2Activity"></activity>
+        <activity android:name=".notification.NotificationActivity" />
+
         <provider
             android:name=".contentprovider.DatabaseProvider"
             android:authorities="com.example.kotlinstudy.provider"
             android:enabled="true"
-            android:exported="true"></provider>
+            android:exported="true" />
 
         <activity android:name=".contentprovider.ContentProviderActivity" />
         <activity android:name=".persistence.DatabaseActivity" />

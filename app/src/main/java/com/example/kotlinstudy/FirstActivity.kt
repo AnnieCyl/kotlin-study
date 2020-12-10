@@ -21,6 +21,7 @@ import com.example.kotlinstudy.chat.ChatActivity
 import com.example.kotlinstudy.contentprovider.ContentProviderActivity
 import com.example.kotlinstudy.fragment.FragmentActivity
 import com.example.kotlinstudy.news.NewsActivity
+import com.example.kotlinstudy.notification.NotificationActivity
 import com.example.kotlinstudy.persistence.DatabaseActivity
 import com.example.kotlinstudy.persistence.FilePersistenceActivity
 import kotlinx.android.synthetic.main.first_layout.*
@@ -70,6 +71,7 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
         btn_database.setOnClickListener(this)
         btn_make_call.setOnClickListener(this)
         btn_contact.setOnClickListener(this)
+        btn_notification.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -174,6 +176,11 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
 
             btn_contact -> {
                 val intent = Intent(this, ContentProviderActivity::class.java)
+                startActivity(intent)
+            }
+
+            btn_notification -> {
+                val intent = Intent(this, NotificationActivity::class.java)
                 startActivity(intent)
             }
         }
