@@ -17,6 +17,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.kotlinstudy.camera.PhotoActivity
 import com.example.kotlinstudy.chat.ChatActivity
 import com.example.kotlinstudy.contentprovider.ContentProviderActivity
 import com.example.kotlinstudy.fragment.FragmentActivity
@@ -72,6 +73,7 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
         btn_make_call.setOnClickListener(this)
         btn_contact.setOnClickListener(this)
         btn_notification.setOnClickListener(this)
+        btn_photo.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -181,6 +183,11 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
 
             btn_notification -> {
                 val intent = Intent(this, NotificationActivity::class.java)
+                startActivity(intent)
+            }
+
+            btn_photo -> {
+                val intent = Intent(this, PhotoActivity::class.java)
                 startActivity(intent)
             }
         }
