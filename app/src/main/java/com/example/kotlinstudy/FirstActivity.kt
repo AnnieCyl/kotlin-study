@@ -21,6 +21,8 @@ import com.example.kotlinstudy.camera.PhotoActivity
 import com.example.kotlinstudy.chat.ChatActivity
 import com.example.kotlinstudy.contentprovider.ContentProviderActivity
 import com.example.kotlinstudy.fragment.FragmentActivity
+import com.example.kotlinstudy.media.MediaPlayerActivity
+import com.example.kotlinstudy.media.VideoActivity
 import com.example.kotlinstudy.news.NewsActivity
 import com.example.kotlinstudy.notification.NotificationActivity
 import com.example.kotlinstudy.persistence.DatabaseActivity
@@ -74,6 +76,8 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
         btn_contact.setOnClickListener(this)
         btn_notification.setOnClickListener(this)
         btn_photo.setOnClickListener(this)
+        btn_media.setOnClickListener(this)
+        btn_video.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -188,6 +192,16 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
 
             btn_photo -> {
                 val intent = Intent(this, PhotoActivity::class.java)
+                startActivity(intent)
+            }
+
+            btn_media -> {
+                val intent = Intent(this, MediaPlayerActivity::class.java)
+                startActivity(intent)
+            }
+
+            btn_video -> {
+                val intent = Intent(this, VideoActivity::class.java)
                 startActivity(intent)
             }
         }
