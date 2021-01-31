@@ -23,10 +23,13 @@ import com.example.kotlinstudy.contentprovider.ContentProviderActivity
 import com.example.kotlinstudy.fragment.FragmentActivity
 import com.example.kotlinstudy.media.MediaPlayerActivity
 import com.example.kotlinstudy.media.VideoActivity
+import com.example.kotlinstudy.network.OkHttpActivity
 import com.example.kotlinstudy.news.NewsActivity
 import com.example.kotlinstudy.notification.NotificationActivity
 import com.example.kotlinstudy.persistence.DatabaseActivity
 import com.example.kotlinstudy.persistence.FilePersistenceActivity
+import com.example.kotlinstudy.webview.WebviewActivity
+import kotlinx.android.synthetic.main.activity_ok_http.*
 import kotlinx.android.synthetic.main.first_layout.*
 import java.io.BufferedWriter
 import java.io.OutputStream
@@ -78,6 +81,8 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
         btn_photo.setOnClickListener(this)
         btn_media.setOnClickListener(this)
         btn_video.setOnClickListener(this)
+        btn_webview.setOnClickListener(this)
+        btn_okhttp.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -202,6 +207,16 @@ class FirstActivity : BaseActivity(), View.OnClickListener {
 
             btn_video -> {
                 val intent = Intent(this, VideoActivity::class.java)
+                startActivity(intent)
+            }
+
+            btn_webview -> {
+                val intent = Intent(this, WebviewActivity::class.java)
+                startActivity(intent)
+            }
+
+            btn_okhttp -> {
+                val intent = Intent(this, OkHttpActivity::class.java)
                 startActivity(intent)
             }
         }
