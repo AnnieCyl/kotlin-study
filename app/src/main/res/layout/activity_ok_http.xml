@@ -14,6 +14,13 @@
         android:textAllCaps="false"
         android:text="Send Request"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_get_app_data"
+        android:textAllCaps="false"
+        android:text="Get App Data"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
